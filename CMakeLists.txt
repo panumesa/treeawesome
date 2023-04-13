@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.24)
+set(CMAKE_CXX_STANDARD 20)
+set(Boost_USE_STATIC_LIBS   ON)
+
+project(main LANGUAGES CXX VERSION 0.0)
+
+find_package(Boost 1.71 REQUIRED COMPONENTS unit_test_framework)
+include_directories(src)
+include_directories(Boost::unit_test_framework)
+add_subdirectory(src)
+add_subdirectory(tests)
+target_link_libraries(jositive PUBLIC square_lib)
+target_link_libraries(jegative PUBLIC square_lib)
+add_executable(main main.cpp)
+target_link_libraries(main PUBLIC square_lib)
