@@ -8,15 +8,13 @@ jobs:
     steps:
       - name: clone
         uses: actions/checkout@v1
-      - name: add build folder
-        run: mkdir -p build
       - name: build
-        working-directory: ./build
-        run: cmake -S .. -B . && cmake --build .
+        run: cmake -S . -B ./build && cmake --build ./build
       - name: tests
         working-directory: ./build/tests
         run: ctest
       - name: run lint
-        run: echo "$(cpplint --recursive --exclude=build/* --output=emacs . > analyze.txt 2> analyze.txt)"
+        continue-on-error: true
+        run: cmake --build ./build --target cpplint && exit 0
       - name: show lint analyze
-        run: echo "$(cat analyze.txt)"
+        run: echo "$(cat lint/analyze.txt)"
