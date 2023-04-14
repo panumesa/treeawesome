@@ -9,8 +9,7 @@ jobs:
       - name: clone
         uses: actions/checkout@v1
       - name: build
-        working-directory: ./build
-        run: cmake -S .. -B . && cmake --build .
+        run: cmake -S . -B ./build && cmake --build ./build
       - name: tests
         working-directory: ./build/tests
         run: ctest
