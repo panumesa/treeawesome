@@ -17,6 +17,6 @@ jobs:
         working-directory: ./build/tests
         run: ctest
       - name: run lint
-        run: cmake --build ./build --target cpplint
+        run: cmake --build ./build --target cpplint && exit 0
       - name: show lint analyze
         run: echo "$(cat lint/analyze.txt)"
