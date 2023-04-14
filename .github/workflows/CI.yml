@@ -8,8 +8,6 @@ jobs:
     steps:
       - name: clone
         uses: actions/checkout@v1
-      - name: add build folder
-        run: mkdir -p build
       - name: build
         working-directory: ./build
         run: cmake -S .. -B . && cmake --build .
