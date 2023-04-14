@@ -17,6 +17,6 @@ jobs:
         working-directory: ./build/tests
         run: ctest
       - name: run lint
-        run: echo "$(cpplint --recursive --exclude=build/* --output=emacs . > analyze.txt 2> analyze.txt)"
+        run: cmake --build ./build --target cpplint
       - name: show lint analyze
-        run: echo "$(cat analyze.txt)"
+        run: echo "$(cat lint/analyze.txt)"
